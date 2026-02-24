@@ -69,6 +69,8 @@ services:
     build:
       context: .
       dockerfile: apps/order/Dockerfile
+    env_file:
+      - apps/order/.env
     ports:
       - "50051:50051"
       - "8081:8081"
