@@ -1,4 +1,4 @@
-module github.com/rammtw/order-management-system/notification
+module github.com/rammtw/order-management-system/apps/notification
 
 go 1.25.5
 

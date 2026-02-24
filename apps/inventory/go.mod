@@ -1,4 +1,4 @@
-module github.com/rammtw/order-management-system/inventory
+module github.com/rammtw/order-management-system/apps/inventory
 
 go 1.25.5
 
