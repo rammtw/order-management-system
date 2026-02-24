@@ -2,12 +2,15 @@ FROM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
-COPY gen/ ./gen/
+COPY go.work go.work.sum ./
+COPY gen/go.mod ./gen/go.mod
 COPY apps/order/go.mod apps/order/go.sum ./apps/order/
+
 WORKDIR /app/apps/order
 RUN go mod download
 
 WORKDIR /app
+COPY gen/ ./gen/
 COPY apps/order/ ./apps/order/
 
 WORKDIR /app/apps/order
