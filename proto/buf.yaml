@@ -1,6 +1,7 @@
 version: v2
 modules:
-  - path: proto
+  - path: .
+    name: buf.build/rammtw/order-management-system
 lint:
   use:
     - STANDARD

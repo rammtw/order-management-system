@@ -1,16 +1,18 @@
 FROM golang:1.25-alpine AS builder
 
-RUN apk add --no-cache git ca-certificates
+WORKDIR /app
 
-WORKDIR /src
-COPY go.mod go.sum ./
+COPY gen/ ./gen/
+COPY apps/order/go.mod apps/order/go.sum ./apps/order/
+WORKDIR /app/apps/order
 RUN go mod download
 
-COPY . .
+WORKDIR /app
+COPY apps/order/ ./apps/order/
+
+WORKDIR /app/apps/order
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /bin/order-service ./cmd/
 
-FROM scratch
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /bin/order-service /order-service
-EXPOSE 50051 8081
-ENTRYPOINT ["/order-service"]
+FROM alpine:3.21
+COPY --from=builder /bin/order-service /bin/order-service
+ENTRYPOINT ["/bin/order-service"]
