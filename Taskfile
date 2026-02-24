@@ -1,0 +1,7 @@
+.PHONY: proto-gen proto-lint
+
+proto-gen:
+	buf generate
+
+proto-lint:
+	buf lint
