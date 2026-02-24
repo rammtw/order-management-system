@@ -67,7 +67,7 @@ services:
 
   order-service:
     build:
-      context: ./services/order
+      context: apps/order
       dockerfile: Dockerfile
     ports:
       - "50051:50051"
@@ -86,7 +86,7 @@ services:
 
   inventory-service:
     build:
-      context: ./services/inventory
+      context: apps/inventory
       dockerfile: Dockerfile
     ports:
       - "50052:50052"
@@ -105,7 +105,7 @@ services:
 
   notification-service:
     build:
-      context: ./services/notification
+      context: apps/notification
       dockerfile: Dockerfile
     ports:
       - "8083:8083"
