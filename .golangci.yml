@@ -2,19 +2,21 @@ version: "2"
 
 linters:
   enable:
-    - errcheck        # непроверенные ошибки
-    - gosimple        # упрощение кода
-    - govet           # подозрительные конструкции
-    - ineffassign     # бесполезные присваивания
-    - staticcheck     # статический анализ
-    - unused          # неиспользуемый код
-    - goimports       # порядок импортов
-    - misspell        # опечатки в комментариях
-    - prealloc        # подсказки по prealloc слайсов
-    - noctx           # http запросы без context
-    - exhaustive      # неполные switch по enum
-    - bodyclose       # незакрытые http.Response.Body
-    - contextcheck    # передача context в функции
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - misspell
+    - prealloc
+    - noctx
+    - exhaustive
+    - bodyclose
+    - contextcheck
+
+formatters:
+  enable:
+    - goimports
 
 linters-settings:
   govet:

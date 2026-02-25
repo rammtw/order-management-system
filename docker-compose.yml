@@ -86,24 +86,26 @@ services:
         condition: service_healthy
     restart: on-failure
 
-#  inventory-service:
-#    build:
-#      context: apps/inventory
-#      dockerfile: Dockerfile
-#    ports:
-#      - "50052:50052"
-#      - "8082:8082"
-#    environment:
-#      DATABASE_URL: postgres://inventory_user:inventory_secret@postgres-inventory:5432/inventory?sslmode=disable
-#      KAFKA_BROKERS: kafka:9094
-#      GRPC_PORT: "50052"
-#      HTTP_PORT: "8082"
-#    depends_on:
-#      postgres-inventory:
-#        condition: service_healthy
-#      kafka:
-#        condition: service_healthy
-#    restart: on-failure
+  inventory-service:
+    build:
+      context: .
+      dockerfile: apps/inventory/Dockerfile
+    env_file:
+      - apps/inventory/.env
+    ports:
+      - "50052:50052"
+      - "8082:8082"
+    environment:
+      DATABASE_URL: postgres://inventory_user:inventory_secret@postgres-inventory:5432/inventory?sslmode=disable
+      KAFKA_BROKERS: kafka:9094
+      GRPC_PORT: "50052"
+      HTTP_PORT: "8082"
+    depends_on:
+      postgres-inventory:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    restart: on-failure
 
 #  notification-service:
 #    build:
