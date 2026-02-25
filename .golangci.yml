@@ -1,0 +1,29 @@
+version: "2"
+
+linters:
+  enable:
+    - errcheck        # непроверенные ошибки
+    - gosimple        # упрощение кода
+    - govet           # подозрительные конструкции
+    - ineffassign     # бесполезные присваивания
+    - staticcheck     # статический анализ
+    - unused          # неиспользуемый код
+    - goimports       # порядок импортов
+    - misspell        # опечатки в комментариях
+    - prealloc        # подсказки по prealloc слайсов
+    - noctx           # http запросы без context
+    - exhaustive      # неполные switch по enum
+    - bodyclose       # незакрытые http.Response.Body
+    - contextcheck    # передача context в функции
+
+linters-settings:
+  govet:
+    enable-all: true
+  goimports:
+    local-prefixes: github.com/rammtw/order-management-system
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
