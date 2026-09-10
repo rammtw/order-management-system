@@ -1,7 +1,7 @@
-.PHONY: proto-gen proto-lint
+.PHONY: lint lint-fix
 
-proto-gen:
-	buf generate
+lint:
+	golangci-lint run ./apps/order/... ./apps/inventory/...
 
-proto-lint:
-	buf lint
+lint-fix:
+	golangci-lint run --fix ./apps/order/... ./apps/inventory/...
